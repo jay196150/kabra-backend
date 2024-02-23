@@ -18,10 +18,16 @@ exports.getProduct = async ( req , res ) => {
 
 exports.addProduct = async ( req , res ) => {
     try{
+        
+        console.log("1");
 
         const  {name , description , quantity , price } = req.body;
 
+        console.log("2");
+
         const image = "Upload/Product/" + req.file.filename;
+
+        console.log("3");
      
         const newProduct = new Product({
            name , 
@@ -31,17 +37,22 @@ exports.addProduct = async ( req , res ) => {
            price
         });
       
+        console.log("4");
+
         newProduct.
         save().
         then( () => {
+            console.log("5");
              res.status(200).json( { data : newProduct } );
         } ).
         catch( (error) => {
+            console.log("6");
             console.log( "ERROR -> " , error );
-            res.status(501).json( { error : error.message } );
+            res.status(501).json( { error : error } );
         } )
 
     }catch(error){
-        res.status(500).json( { error : error.message } );
+        console.log("7");
+        res.status(500).json( { error : error } );
     }
 }
