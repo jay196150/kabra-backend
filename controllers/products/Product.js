@@ -18,9 +18,9 @@ exports.getProduct = async ( req , res ) => {
 
 exports.addProduct = async ( req , res ) => {
     try{
-       
+
         const  {name , description , quantity , price } = req.body;
-      
+
         const image = "Upload/Product/" + req.file.filename;
      
         const newProduct = new Product({
@@ -38,11 +38,10 @@ exports.addProduct = async ( req , res ) => {
         } ).
         catch( (error) => {
             console.log( "ERROR -> " , error );
-            res.status(500).json( { error : error } );
+            res.status(501).json( { error : error.message } );
         } )
 
     }catch(error){
-        console.log(error);
-        res.status(500).json( { error : error } );
+        res.status(500).json( { error : error.message } );
     }
 }
