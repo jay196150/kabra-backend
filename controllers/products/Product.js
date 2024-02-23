@@ -53,6 +53,6 @@ exports.addProduct = async ( req , res ) => {
 
     }catch(error){
         console.log("7");
-        res.status(500).json( { error : error } );
+        res.status(500).json( { error } );
     }
 }
